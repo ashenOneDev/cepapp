@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viacepapp/model/cep_model.dart';
+import 'package:viacepapp/repositories/back4app/ceps_back4app_repository.dart';
 import 'package:viacepapp/repositories/viacep/impl/viacep_dio_repository.dart';
 import 'package:viacepapp/repositories/viacep/viacep_repository.dart';
 
@@ -13,6 +14,9 @@ class ConsultaCepPage extends StatefulWidget {
 class _ConsultaCepPageState extends State<ConsultaCepPage> {
   ViaCepRepository viaCepRepository = ViaCepDioRepository();
   TextEditingController cepController = TextEditingController(text: "");
+
+  CepsBack4appRepository cepsBack4appRepository = CepsBack4appRepository();
+
   bool loading = false;
   bool hidenString = true;
   CepModel cepModel = CepModel();
@@ -66,6 +70,13 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
                         hidenString = true;
                       }
                     });
+                    if (cepModel.cep != null) {
+                      var cepBack4appModel =
+                          await cepsBack4appRepository.obterCEP(cepModel.cep!);
+                      if (cepBack4appModel == null) {
+                        await cepsBack4appRepository.salvarCep(cepModel);
+                      }
+                    }
                   },
                   child: const Text(
                     "Consultar",

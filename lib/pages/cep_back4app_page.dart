@@ -393,12 +393,20 @@ class _CepBack4appPageState extends State<CepBack4appPage> {
                                     ],
                                   ),
                                   actions: [
-                                    TextButton(
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.red)),
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
                                         child: const Text("Não")),
-                                    TextButton(
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.green)),
                                         onPressed: () async {
                                           Navigator.pop(context);
                                           await cepsBack4appRepository
