@@ -45,7 +45,7 @@ class CustomDrawer extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Text("CEP  Back4App")
+                  Text("CEPs Back4App")
                 ],
               ),
             ),

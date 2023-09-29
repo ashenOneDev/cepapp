@@ -1,13 +1,13 @@
 class CepsBack4appModel {
-  List<CepsBack4appModel> ceps = [];
+  List<CepBack4appModel> ceps = [];
 
   CepsBack4appModel(this.ceps);
 
   CepsBack4appModel.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
-      ceps = <CepsBack4appModel>[];
+      ceps = <CepBack4appModel>[];
       json['results'].forEach((v) {
-        ceps.add(CepsBack4appModel.fromJson(v));
+        ceps.add(CepBack4appModel.fromJson(v));
       });
     }
   }
@@ -80,6 +80,22 @@ class CepBack4appModel {
     data['siafi'] = siafi;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
+    return data;
+  }
+
+  Map<String, dynamic> toCreateJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['objectId'] = objectId;
+    data['cep'] = cep;
+    data['logradouro'] = logradouro;
+    data['complemento'] = complemento;
+    data['bairro'] = bairro;
+    data['localidade'] = localidade;
+    data['uf'] = uf;
+    data['ibge'] = ibge;
+    data['gia'] = gia;
+    data['ddd'] = ddd;
+    data['siafi'] = siafi;
     return data;
   }
 }
