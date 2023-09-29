@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:viacepapp/model/ceps_back4app_model.dart';
 import 'package:viacepapp/repositories/back4app/ceps_back4app_repository.dart';
@@ -303,16 +304,56 @@ class _CepBack4appPageState extends State<CepBack4appPage> {
                                     ],
                                   ),
                                   actions: [
-                                    TextButton(
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.red)),
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: const Text("Cancelar")),
-                                    TextButton(
+                                        child: const Text(
+                                          "Cancelar",
+                                          style: TextStyle(color: Colors.white),
+                                        )),
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.green)),
                                         onPressed: () async {
-                                          Navigator.pop(context);
+                                          if (cepController.text.trim().length <
+                                              8) {
+                                            showDialog(
+                                                context: context,
+                                                builder: (BuildContext bc) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                      "O CEP deve ser preenchido!",
+                                                      style: TextStyle(
+                                                          fontSize: 14),
+                                                    ),
+                                                    actions: [
+                                                      TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: Text("Fechar"))
+                                                    ],
+                                                  );
+                                                });
+                                            /*  ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        "O CEP deve ser preenchido")));
+                                            return; */
+                                          } else {
+                                            Navigator.pop(context);
+                                          }
                                           cep.cep =
                                               "${cepController.text.substring(0, 5)}-${cepController.text.substring(5, 8)}";
+
                                           cep.logradouro =
                                               logradouroController.text;
                                           cep.complemento =
