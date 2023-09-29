@@ -24,6 +24,10 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text("Via CEP"),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: ListView(children: [

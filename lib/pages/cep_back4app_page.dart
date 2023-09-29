@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:viacepapp/model/ceps_back4app_model.dart';
 import 'package:viacepapp/repositories/back4app/ceps_back4app_repository.dart';
@@ -48,6 +47,7 @@ class _CepBack4appPageState extends State<CepBack4appPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: const Text("CEPs Back4App"),
       ),
       body: loading
